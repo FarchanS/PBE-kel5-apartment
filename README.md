@@ -1,3 +1,3 @@
 # PBE-kel5-apartment
 
-Progam database tugas dari Pemrograman Berbasis Event
+Progam database dalam rangka tugas dari Pemrograman Berbasis Event
