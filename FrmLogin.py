@@ -14,7 +14,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_FrmLoginMainWindow(object):
     def setupUi(self, FrmLoginMainWindow):
         FrmLoginMainWindow.setObjectName("FrmLoginMainWindow")
-        FrmLoginMainWindow.resize(626, 368)
+        FrmLoginMainWindow.resize(571, 284)
         self.centralwidget = QtWidgets.QWidget(FrmLoginMainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.formLayoutWidget = QtWidgets.QWidget(self.centralwidget)
@@ -59,26 +59,19 @@ class Ui_FrmLoginMainWindow(object):
         self.label_2.setAlignment(QtCore.Qt.AlignCenter)
         self.label_2.setObjectName("label_2")
         self.PB_testcon = QtWidgets.QPushButton(self.centralwidget)
-        self.PB_testcon.setGeometry(QtCore.QRect(240, 290, 127, 28))
+        self.PB_testcon.setGeometry(QtCore.QRect(260, 330, 127, 28))
         self.PB_testcon.setObjectName("PB_testcon")
         self.PB_msgbox = QtWidgets.QPushButton(self.centralwidget)
-        self.PB_msgbox.setGeometry(QtCore.QRect(70, 280, 93, 28))
+        self.PB_msgbox.setGeometry(QtCore.QRect(120, 320, 93, 28))
         self.PB_msgbox.setObjectName("PB_msgbox")
         FrmLoginMainWindow.setCentralWidget(self.centralwidget)
-        self.menubar = QtWidgets.QMenuBar(FrmLoginMainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 626, 26))
-        self.menubar.setObjectName("menubar")
-        FrmLoginMainWindow.setMenuBar(self.menubar)
-        self.statusbar = QtWidgets.QStatusBar(FrmLoginMainWindow)
-        self.statusbar.setObjectName("statusbar")
-        FrmLoginMainWindow.setStatusBar(self.statusbar)
 
         self.retranslateUi(FrmLoginMainWindow)
         QtCore.QMetaObject.connectSlotsByName(FrmLoginMainWindow)
 
     def retranslateUi(self, FrmLoginMainWindow):
         _translate = QtCore.QCoreApplication.translate
-        FrmLoginMainWindow.setWindowTitle(_translate("FrmLoginMainWindow", "MainWindow"))
+        FrmLoginMainWindow.setWindowTitle(_translate("FrmLoginMainWindow", "Login"))
         self.userNameLabel.setText(_translate("FrmLoginMainWindow", "UserName"))
         self.passwordLabel.setText(_translate("FrmLoginMainWindow", "Password"))
         self.PB_login.setText(_translate("FrmLoginMainWindow", "Login"))
