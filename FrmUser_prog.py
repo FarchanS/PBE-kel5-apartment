@@ -1,4 +1,8 @@
+from FrmLogin import *
+from FrmUnit import *
+from FrmUnit_prog import *
 from FrmUser import *
+from FrmUser_prog import *
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import * 
 import MySQLdb as mdb
