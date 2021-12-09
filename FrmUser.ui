@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>252</width>
-    <height>242</height>
+    <width>246</width>
+    <height>248</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -136,19 +136,6 @@
       </widget>
      </item>
     </layout>
-   </widget>
-   <widget class="QPushButton" name="PB_pesan">
-    <property name="geometry">
-     <rect>
-      <x>80</x>
-      <y>260</y>
-      <width>93</width>
-      <height>28</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>PushButton</string>
-    </property>
    </widget>
   </widget>
  </widget>

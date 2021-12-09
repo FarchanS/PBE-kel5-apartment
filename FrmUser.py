@@ -14,7 +14,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_FrmUser(object):
     def setupUi(self, FrmUser):
         FrmUser.setObjectName("FrmUser")
-        FrmUser.resize(252, 242)
+        FrmUser.resize(246, 248)
         self.centralwidget = QtWidgets.QWidget(FrmUser)
         self.centralwidget.setObjectName("centralwidget")
         self.label = QtWidgets.QLabel(self.centralwidget)
@@ -73,9 +73,6 @@ class Ui_FrmUser(object):
         self.PB_del = QtWidgets.QPushButton(self.formLayoutWidget)
         self.PB_del.setObjectName("PB_del")
         self.formLayout.setWidget(5, QtWidgets.QFormLayout.LabelRole, self.PB_del)
-        self.PB_pesan = QtWidgets.QPushButton(self.centralwidget)
-        self.PB_pesan.setGeometry(QtCore.QRect(80, 260, 93, 28))
-        self.PB_pesan.setObjectName("PB_pesan")
         FrmUser.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(FrmUser)
@@ -95,7 +92,6 @@ class Ui_FrmUser(object):
         self.PB_update.setText(_translate("FrmUser", "Update"))
         self.PB_exit.setText(_translate("FrmUser", "Exit"))
         self.PB_del.setText(_translate("FrmUser", "Delete"))
-        self.PB_pesan.setText(_translate("FrmUser", "PushButton"))
 
 
 if __name__ == "__main__":
