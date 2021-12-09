@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 07, 2021 at 03:32 PM
+-- Generation Time: Dec 09, 2021 at 02:48 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.12
 
@@ -28,10 +28,10 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `accesscard` (
-  `IdAccess` int(3) NOT NULL,
-  `IdFasilitas1` int(11) NOT NULL,
-  `IdFasilitas2` int(11) NOT NULL,
-  `IdFasilitas3` int(11) NOT NULL
+  `IdAccess` varchar(11) NOT NULL,
+  `IdFasilitas1` varchar(11) NOT NULL,
+  `IdFasilitas2` varchar(11) NOT NULL,
+  `IdFasilitas3` varchar(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -41,7 +41,7 @@ CREATE TABLE `accesscard` (
 --
 
 CREATE TABLE `fasilitas` (
-  `IdFasilitas` int(11) NOT NULL,
+  `IdFasilitas` varchar(11) NOT NULL,
   `Nama` varchar(30) NOT NULL,
   `JamBuka` time NOT NULL,
   `JamTutup` time NOT NULL
@@ -67,7 +67,7 @@ CREATE TABLE `kendaraan` (
 --
 
 CREATE TABLE `owner` (
-  `IdOwner` int(4) NOT NULL,
+  `IdOwner` varchar(4) NOT NULL,
   `Nama` varchar(30) NOT NULL,
   `TempatLahir` varchar(30) NOT NULL,
   `TanggalLahir` date NOT NULL,
@@ -99,18 +99,18 @@ CREATE TABLE `unit` (
   `NoUnit` varchar(6) NOT NULL,
   `Tipe` varchar(10) NOT NULL,
   `Luas` int(11) NOT NULL,
-  `IdOwner` int(4) NOT NULL,
-  `IdAksesCard1` int(10) NOT NULL,
-  `IdAksesCard2` int(10) NOT NULL,
-  `IdAksesCard3` int(10) NOT NULL,
-  `IdAksesCard4` int(10) NOT NULL,
-  `IdAksesCard5` int(10) NOT NULL,
+  `IdOwner` varchar(4) NOT NULL,
+  `IdAksesCard1` varchar(10) NOT NULL,
+  `IdAksesCard2` varchar(10) NOT NULL,
+  `IdAksesCard3` varchar(10) NOT NULL,
+  `IdAksesCard4` varchar(10) NOT NULL,
+  `IdAksesCard5` varchar(10) NOT NULL,
   `IdKendaraan1` varchar(10) NOT NULL,
   `IdKendaraan2` varchar(10) NOT NULL,
   `IdKendaraan3` varchar(10) NOT NULL,
   `IdKendaraan4` varchar(10) NOT NULL,
   `IdKendaraan5` varchar(10) NOT NULL,
-  `IuranStatus` int(11) NOT NULL
+  `IuranStatus` varchar(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -120,11 +120,20 @@ CREATE TABLE `unit` (
 --
 
 CREATE TABLE `user` (
-  `IdUser` int(3) NOT NULL,
+  `IdUser` varchar(3) NOT NULL,
   `Nama` varchar(30) NOT NULL,
   `Pass` varchar(30) NOT NULL,
   `Role` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `user`
+--
+
+INSERT INTO `user` (`IdUser`, `Nama`, `Pass`, `Role`) VALUES
+('1', 'fata2', '123', 'Admin'),
+('2', 'hanz', '123', 'Admin'),
+('3', 'fathi', '123', 'Admin');
 
 --
 -- Indexes for dumped tables
@@ -203,22 +212,36 @@ ALTER TABLE `user`
 -- Constraints for table `accesscard`
 --
 ALTER TABLE `accesscard`
-  ADD CONSTRAINT `accesscard1` FOREIGN KEY (`IdFasilitas1`) REFERENCES `accesscard` (`IdAccess`),
-  ADD CONSTRAINT `accesscard2` FOREIGN KEY (`IdFasilitas2`) REFERENCES `accesscard` (`IdAccess`),
-  ADD CONSTRAINT `accesscard3` FOREIGN KEY (`IdFasilitas3`) REFERENCES `accesscard` (`IdAccess`);
+  ADD CONSTRAINT `fasilitas1` FOREIGN KEY (`IdFasilitas1`) REFERENCES `fasilitas` (`IdFasilitas`),
+  ADD CONSTRAINT `fasilitas2` FOREIGN KEY (`IdFasilitas2`) REFERENCES `fasilitas` (`IdFasilitas`),
+  ADD CONSTRAINT `fasilitas3` FOREIGN KEY (`IdFasilitas3`) REFERENCES `fasilitas` (`IdFasilitas`);
 
 --
 -- Constraints for table `kendaraan`
 --
 ALTER TABLE `kendaraan`
-  ADD CONSTRAINT `kendaraan_ibfk_1` FOREIGN KEY (`NoPlat`) REFERENCES `kendaraan` (`NoPlat`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `kendaraan_ibfk_2` FOREIGN KEY (`IdParkir`) REFERENCES `parkir` (`IdParkir`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `parkir` FOREIGN KEY (`IdParkir`) REFERENCES `parkir` (`IdParkir`);
+
+--
+-- Constraints for table `owner`
+--
+ALTER TABLE `owner`
+  ADD CONSTRAINT `owner` FOREIGN KEY (`IdOwner`) REFERENCES `unit` (`IdOwner`);
 
 --
 -- Constraints for table `unit`
 --
 ALTER TABLE `unit`
-  ADD CONSTRAINT `unit_ibfk_1` FOREIGN KEY (`IdOwner`) REFERENCES `owner` (`IdOwner`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `aksescard1` FOREIGN KEY (`IdAksesCard1`) REFERENCES `accesscard` (`IdAccess`),
+  ADD CONSTRAINT `aksescard2` FOREIGN KEY (`IdAksesCard2`) REFERENCES `accesscard` (`IdAccess`),
+  ADD CONSTRAINT `aksescard3` FOREIGN KEY (`IdAksesCard3`) REFERENCES `accesscard` (`IdAccess`),
+  ADD CONSTRAINT `aksescard4` FOREIGN KEY (`IdAksesCard4`) REFERENCES `accesscard` (`IdAccess`),
+  ADD CONSTRAINT `aksescard5` FOREIGN KEY (`IdAksesCard5`) REFERENCES `accesscard` (`IdAccess`),
+  ADD CONSTRAINT `parkir1` FOREIGN KEY (`IdKendaraan1`) REFERENCES `kendaraan` (`NoPlat`),
+  ADD CONSTRAINT `parkir2` FOREIGN KEY (`IdKendaraan2`) REFERENCES `kendaraan` (`NoPlat`),
+  ADD CONSTRAINT `parkir3` FOREIGN KEY (`IdKendaraan3`) REFERENCES `kendaraan` (`NoPlat`),
+  ADD CONSTRAINT `parkir4` FOREIGN KEY (`IdKendaraan4`) REFERENCES `kendaraan` (`NoPlat`),
+  ADD CONSTRAINT `parkir5` FOREIGN KEY (`IdKendaraan5`) REFERENCES `kendaraan` (`NoPlat`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
