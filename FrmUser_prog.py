@@ -1,17 +1,16 @@
-from FrmLogin import *
-from FrmUnit import *
-from FrmUnit_prog import *
-from FrmUser import *
-from FrmUser_prog import *
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import * 
+from FrmLogin import *
+# from FrmLogin_prog import *
+from FrmUnit import *
+# from FrmUnit_prog import *
+from FrmUser import *
 import MySQLdb as mdb
 
 def signals(self):
     self.PB_add.clicked.connect(self.InsertData)
     self.PB_update.clicked.connect(self.UpdateData)
     self.PB_del.clicked.connect(self.DeleteData)
-    self.PB_exit.clicked.connect(self.keluar)
     self.Txt_id_user.textChanged.connect(self.select_data)
 
 def pesan(self, ikon, judul, isipesan):
@@ -21,16 +20,6 @@ def pesan(self, ikon, judul, isipesan):
         msgBox.setWindowTitle(judul)
         msgBox.setStandardButtons(QMessageBox.Ok)
         msgBox.exec()
-
-def DBConnection(self):
-    try:
-        db = mdb.connect('localhost', 'root', '', 'pbe_final_project_db')
-
-        pesan(self, QMessageBox.Information,"Connection","Database Connected Successfully")
-    except mdb.Error as e:
-        pesan(self, QMessageBox.Information,"Connection","Failed to connect to Database")
-
-        sys.exit(1)
 
 def InsertData(self): 
     id_user = self.Txt_id_user.text()
@@ -103,20 +92,14 @@ def select_data(self):
         cur.execute(query, (id_user))
 
         result = cur.fetchall()
-        # print(str(result))
-
 
         if result == ():
             self.Txt_nama.setText("")
             self.Txt_password.setText("")
             self.Cmb_role.setCurrentText("")
-            # print(result)
         else:
             for row_number, row_data in enumerate(result):
-                # print(row_number)
-                # print(row_data)
                 for column_number, data in enumerate(row_data):
-                    # print(column_number)
                     if (column_number==1):
                         self.Txt_nama.setText(str(data))
                     elif (column_number==2):
@@ -129,18 +112,15 @@ def select_data(self):
         self.Txt_password.setText("")
         self.Cmb_role.setCurrentText("")
         # pesan(self, QMessageBox.Information,"Error","Id User kosong")
-        
-def keluar(self):
-    sys.exit(1)
 
+        
 Ui_FrmUser.signals=signals
 Ui_FrmUser.pesan=pesan
-Ui_FrmUser.DBConnection = DBConnection
 Ui_FrmUser.InsertData = InsertData
 Ui_FrmUser.UpdateData = UpdateData
 Ui_FrmUser.DeleteData = DeleteData
 Ui_FrmUser.select_data = select_data
-Ui_FrmUser.keluar = keluar
+
 
 if __name__ == "__main__":
     import sys
