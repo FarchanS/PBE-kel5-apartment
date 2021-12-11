@@ -14,8 +14,8 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_FrmAccessCard(object):
     def setupUi(self, FrmAccessCard):
         FrmAccessCard.setObjectName("FrmAccessCard")
-        FrmAccessCard.resize(328, 627)
-        FrmAccessCard.setMaximumSize(QtCore.QSize(328, 627))
+        FrmAccessCard.resize(328, 622)
+        FrmAccessCard.setMaximumSize(QtCore.QSize(328, 622))
         self.centralwidget = QtWidgets.QWidget(FrmAccessCard)
         self.centralwidget.setObjectName("centralwidget")
         self.label = QtWidgets.QLabel(self.centralwidget)
@@ -202,7 +202,7 @@ class Ui_FrmAccessCard(object):
         self.fasilitas2Label_2.raise_()
         self.Cmb_Fasilitas3.raise_()
         self.PB_Submit = QtWidgets.QPushButton(self.centralwidget)
-        self.PB_Submit.setGeometry(QtCore.QRect(10, 560, 93, 28))
+        self.PB_Submit.setGeometry(QtCore.QRect(10, 740, 93, 28))
         self.PB_Submit.setObjectName("PB_Submit")
         FrmAccessCard.setCentralWidget(self.centralwidget)
 
