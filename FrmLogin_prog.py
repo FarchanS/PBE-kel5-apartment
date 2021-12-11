@@ -1,16 +1,16 @@
 from FrmLogin import *
+from FrmLogin_prog import *
 from FrmUnit import *
 from FrmUnit_prog import *
 from FrmUser import *
-from FrmUser_prog import *
+# from FrmUser_prog import *
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import * 
 import MySQLdb as mdb
+import os
 
 def signals(self):
     self.PB_login.clicked.connect(self.login)
-    self.PB_testcon.clicked.connect(self.DBConnection)
-    self.PB_msgbox.clicked.connect(self.pesan)
 
 def pesan(self, ikon, judul, isipesan):
         msgBox = QMessageBox()
@@ -46,21 +46,24 @@ def login(self):
         cur.execute("SELECT * from user where Nama like '"+username + "'and Pass like '"+password+"'")
         result = cur.fetchone()
 
+        # print(result)
+
         if result == None:
             pesan(self, QMessageBox.Information,"Failed to Login","Incorrect Email & Password")
 
         else:
-            pesan(self, QMessageBox.Information,"Login Success","You Are Login")
-            self.window = QtWidgets.QMainWindow()
-            self.gui = Ui_FrmUnit()
-            self.gui.setupUi(self.window) 
-            self.gui.signals()
-            self.window.show()
-            FrmLoginMainWindow.hide()
-            # print("signal")
+            self.FrmUnit = QtWidgets.QMainWindow()
+            self.ui_unit = Ui_FrmUnit()
+            self.ui_unit.setupUi(self.FrmUnit)
+            self.ui_unit.signals()
+            self.FrmUnit.show()  
+            self.ui_unit.Lbl_user.setText(username)
+            self.ui_unit.Lbl_user_role.setText(result[3])
+            self.ui_unit.Lbl_user_role.setVisible(False)
 
     except mdb.Error as e:
         pesan(self, QMessageBox.Information,"Error","Some Error")
+        
 
 Ui_FrmLoginMainWindow.pesan=pesan
 Ui_FrmLoginMainWindow.signals=signals
@@ -76,3 +79,10 @@ if __name__ == "__main__":
     ui.signals()
     FrmLoginMainWindow.show()    
     sys.exit(app.exec_())
+
+    
+    
+    
+    
+    
+    
