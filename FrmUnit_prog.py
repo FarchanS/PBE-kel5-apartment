@@ -1,7 +1,6 @@
 from FrmUnit import *
 from FrmLogin import *
-from FrmUnit import *
-from FrmUnit_prog import *
+from FrmLogin_prog import *
 from FrmUser import *
 from FrmUser_prog import *
 from PyQt5 import QtCore, QtGui, QtWidgets
@@ -53,7 +52,7 @@ def InsertData(self):
     try:
         con = mdb.connect('localhost','root','','pbe_final_project_db')
         
-        query = ("INSERT INTO user(No unit,tipe,luas,id owner,IdAksesCard1,IdAksesCard2,IdAksesCard3,IdAksesCard4,IdAksesCard5,IdKendaraan1,IdKendaraan2,IdKendaraan3,IdKendaraan4,IdKendaraan5,IuranStatus) VALUES(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)")
+        query = ("INSERT INTO unit(No unit,tipe,luas,id owner,IdAksesCard1,IdAksesCard2,IdAksesCard3,IdAksesCard4,IdAksesCard5,IdKendaraan1,IdKendaraan2,IdKendaraan3,IdKendaraan4,IdKendaraan5,IuranStatus) VALUES(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)")
         cur = con.cursor()
         cur.execute(query, (no_unit,tipe,luas,id_owner,id_aksescard1,id_aksescard2,id_aksescard3,id_aksescard4,id_aksescard5,id_kendaraan1,id_kendaraan2,id_kendaraan3,id_kendaraan4,id_kendaraan5,iuranstatus))
         con.commit()    
@@ -82,7 +81,7 @@ def UpdateData(self):
     try:
         con = mdb.connect('localhost','root','','pbe_final_project_db')
         
-        query = ("UPDATE user SET Nama = %s, Pass = %s, Role = %s WHERE IdUser = %s")
+        query = ("UPDATE unit SET tipe = %s, luas = %s, IdOwner = %s, IdAksesCard1 = %s, IdAksesCard2 = %s, IdAksesCard3 = %s, IdAksesCard4 = %s, IdAksesCard5 = %s, IdKendaraan1 = %s, IdKendaraan2 = %s, IdKendaraan3 = %s, IdKendaraan4 = %s, IdKendaraan5 = %s, IuranStatus = %s,WHERE NoUnit = %s")
         cur = con.cursor()
         cur.execute(query, (no_unit,tipe,luas,id_owner,id_aksescard1,id_aksescard2,id_aksescard3,id_aksescard4,id_aksescard5,id_kendaraan1,id_kendaraan2,id_kendaraan3,id_kendaraan4,id_kendaraan5,iuranstatus))
         con.commit()    
@@ -93,13 +92,13 @@ def UpdateData(self):
         pesan(self, QMessageBox.Information,"Error","Update Failed")
 
 def DeleteData(self): 
-    id_user = self.Txt_nounit.text()
+    no_unit = self.Txt_nounit.text()
             
     try:
         con = mdb.connect('localhost','root','','pbe_final_project_db')
         
         cur = con.cursor()
-        cur.execute("DELETE FROM user WHERE IdUser = %s", [id_user])
+        cur.execute("DELETE FROM unit WHERE NoUnit = %s", [no_unit])
         con.commit()    
 
         pesan(self, QMessageBox.Information,"Info","Data Deleted Successfully")
@@ -116,14 +115,14 @@ def select_data(self):
             database='pbe_final_project_db'
         )
 
-        id_user = self.Txt_nounit.text()
+        no_unit = self.Txt_nounit.text()
 
         cur = con.cursor()
         
         # cur.execute("SELECT * FROM {} ".format('user'))
-        query = ("SELECT * FROM user WHERE IdUser= %s")
+        query = ("SELECT * FROM unit WHERE NoUnit= %s")
         cur = con.cursor()
-        cur.execute(query, (id_user))
+        cur.execute(query, (no_unit))
 
         result = cur.fetchall()
         # print(str(result))
@@ -157,7 +156,7 @@ def select_data(self):
                     elif (column_number==2):
                         self.Txt_tipe.setText(str(data))
                     elif (column_number==3):
-                        self.Cmb_luas.setText(str(data))
+                        self.Txt_luas.setText(str(data))
                     elif (column_number==4):
                         self.Txt_idowner.setText(str(data))
                     elif (column_number==5):
