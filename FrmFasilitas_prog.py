@@ -1,5 +1,6 @@
-from sys import set_asyncgen_hooks
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtWidgets import * 
+import MySQLdb as mdb
 from FrmUnit import *
 from FrmUnit_prog import *
 from FrmAccessCard import *
@@ -106,20 +107,11 @@ def DeleteData(self):
 
 def select_data(self):
     try:
-        con = mdb.connect(
-            host="localhost",
-            user="root",
-            password="",
-            database='pbe_final_project_db'
-        )
+        con = mdb.connect('localhost','root','','pbe_final_project_db')
 
         id_facility = self.Txt_id_facility.text()
 
-        # cur = con.cursor()
-        
-        # query = ("SELECT * FROM fasilitas WHERE IdFasilitas= %s")
         cur = con.cursor()
-        # cur.execute(query, (id_facility))
         cur.execute("SELECT * FROM fasilitas WHERE IdFasilitas = %s", [id_facility])
 
         result = cur.fetchall()
