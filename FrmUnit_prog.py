@@ -7,6 +7,8 @@ from FrmAccessCard import *
 from FrmAccessCard_prog import *
 from FrmFasilitas import *
 from FrmFasilitas_prog import *
+from FrmDataKen import *
+from FrmDataKen_prog import *
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import * 
 import MySQLdb as mdb
@@ -186,7 +188,7 @@ def select_data(self):
             self.ClearDataUnitForm(self)
 
 def user(self):
-    if (self.Lbl_Role.text()=='Admin'):
+    if (self.Lbl_user_role.text()=='Admin'):
         self.window_user = QtWidgets.QMainWindow()
         self.ui_user = Ui_FrmUser()
         self.ui_user.setupUi(self.window_user) 
@@ -207,7 +209,7 @@ def login(self):
 
 def logout(self):
         self.Lbl_CurrentUser.setText("Guest")
-        self.Lbl_Role.setText("")
+        self.Lbl_user_role.setText("")
 
 def AccessCard(self):
     if (self.Lbl_user_role.text()=='Admin'):
@@ -221,11 +223,11 @@ def AccessCard(self):
 
 def kendaraan(self):
     if (self.Lbl_user_role.text()=='Admin'):
-        self.FrmFasilitas = QtWidgets.QMainWindow()
-        self.ui_login = Ui_FrmFasilitas()
-        self.ui_login.setupUi(self.FrmFasilitas)
+        self.FrmDataKen = QtWidgets.QMainWindow()
+        self.ui_login = Ui_FrmDataKen()
+        self.ui_login.setupUi(self.FrmDataKen)
         self.ui_login.signals()
-        self.FrmFasilitas.show()
+        self.FrmDataKen.show()
     else:
         pesan(self,QMessageBox.Information,"Warning","you dont have authorisation, Please contact Admin")
 

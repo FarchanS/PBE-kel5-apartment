@@ -58,8 +58,8 @@ def login(self):
             self.ui_unit.signals()
             self.FrmUnit.show()  
             self.ui_unit.Lbl_CurrentUser.setText(username)
-            self.ui_unit.Lbl_Role.setText(result[3])
-            self.ui_unit.Lbl_Role.setVisible(False)
+            self.ui_unit.Lbl_user_role.setText(result[3])
+            self.ui_unit.Lbl_user_role.setVisible(False)
 
     except mdb.Error as e:
         pesan(self, QMessageBox.Information,"Error","Some Error")
