@@ -105,7 +105,7 @@
         <bool>true</bool>
        </property>
        <property name="editable">
-        <bool>true</bool>
+        <bool>false</bool>
        </property>
        <property name="duplicatesEnabled">
         <bool>false</bool>

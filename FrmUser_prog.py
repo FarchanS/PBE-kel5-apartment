@@ -1,17 +1,23 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import * 
 from FrmLogin import *
-# from FrmLogin_prog import *
+from FrmLogin_prog import *
 from FrmUnit import *
-# from FrmUnit_prog import *
+from FrmUnit_prog import *
 from FrmUser import *
 import MySQLdb as mdb
 
+a=0
+
 def signals(self):
+    global a
     self.PB_add.clicked.connect(self.InsertData)
     self.PB_update.clicked.connect(self.UpdateData)
     self.PB_del.clicked.connect(self.DeleteData)
     self.Txt_id_user.textChanged.connect(self.select_data)
+    if (a==0):
+        AddRoleItem(self)
+        a=1
 
 def pesan(self, ikon, judul, isipesan):
         msgBox = QMessageBox()
@@ -113,6 +119,15 @@ def select_data(self):
         self.Cmb_role.setCurrentText("")
         # pesan(self, QMessageBox.Information,"Error","Id User kosong")
 
+def AddRoleItem(self):
+    cmb1=self.Cmb_role.currentText()
+
+    self.Cmb_role.clear()
+    self.Cmb_role.addItem("User")
+    self.Cmb_role.addItem("Admin")
+
+    self.Cmb_role.setCurrentText(cmb1)
+    
         
 Ui_FrmUser.signals=signals
 Ui_FrmUser.pesan=pesan
