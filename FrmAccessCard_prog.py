@@ -1,20 +1,30 @@
-from sys import set_asyncgen_hooks
 from PyQt5 import QtCore, QtGui, QtWidgets
+import MySQLdb as mdb
 from FrmUnit import *
 from FrmUnit_prog import *
 from FrmAccessCard import *
+from FrmFasilitas import *
+from FrmFasilitas_prog import *
+
+a=0
 
 def signals(self):
+    global a
+
     self.PB_add.clicked.connect(self.InsertData)
     self.PB_update.clicked.connect(self.UpdateData)
     self.PB_del.clicked.connect(self.DeleteData)
     # self.PB_Submit.clicked.connect(self.DisplayFasilitas1)
-    self.PB_Submit.clicked.connect(self.AddIdFasilitas)
+    self.PB_Refresh.clicked.connect(self.AddIdFasilitas)
     self.Txt_id_AccessCard.textChanged.connect(self.select_data)
     self.Cmb_Fasilitas1.currentTextChanged.connect(self.DisplayFasilitas1)
     self.Cmb_Fasilitas2.currentTextChanged.connect(self.DisplayFasilitas2)
     self.Cmb_Fasilitas3.currentTextChanged.connect(self.DisplayFasilitas3)
-
+    
+    self.PB_Fasilitas.clicked.connect(self.fasilitas)
+    if (a==0):
+        AddIdFasilitas(self)
+        a=1
 
 def pesan(self, ikon, judul, isipesan):
         msgBox = QMessageBox()
@@ -78,23 +88,14 @@ def DeleteData(self):
 
 def select_data(self):
     try:
-        con = mdb.connect(
-            host="localhost",
-            user="root",
-            password="",
-            database='pbe_final_project_db'
-        )
+        con = mdb.connect('localhost','root','','pbe_final_project_db')
 
         id_card = self.Txt_id_AccessCard.text()
 
-        # cur = con.cursor()
-        
-        # query = ("SELECT * FROM accesscard WHERE IdAccess= %s")
         cur = con.cursor()
         cur.execute("SELECT * FROM accesscard WHERE IdAccess= %s", [id_card])
 
         result = cur.fetchall()
-        print(result)
 
         if result == ():
             self.Cmb_Fasilitas1.setCurrentText("")
@@ -117,18 +118,8 @@ def select_data(self):
         # pesan(self, QMessageBox.Information,"Error","Id User kosong")
 
 def AddIdFasilitas(self):
-    con = mdb.connect(
-            host="localhost",
-            user="root",
-            password="",
-            database='pbe_final_project_db'
-        )
+    con = mdb.connect('localhost','root','','pbe_final_project_db')
 
-    # id_card = self.Txt_id_AccessCard.text()
-
-    cur = con.cursor()
-    
-    # query = ("SELECT * FROM fasilitas")
     cur = con.cursor()
     cur.execute("SELECT * FROM fasilitas")
 
@@ -136,8 +127,11 @@ def AddIdFasilitas(self):
     self.Cmb_Fasilitas1.clear()
     self.Cmb_Fasilitas2.clear()
     self.Cmb_Fasilitas3.clear()
-    print(result)
-    print(result[0][0])
+    self.Cmb_Fasilitas1.addItem("")
+    self.Cmb_Fasilitas2.addItem("")
+    self.Cmb_Fasilitas3.addItem("")
+    # print(result)
+    # print(result[0][0])
     if result == ():
         self.Cmb_Fasilitas1.setCurrentText("")
         self.Cmb_Fasilitas2.setCurrentText("")
@@ -147,13 +141,6 @@ def AddIdFasilitas(self):
             self.Cmb_Fasilitas1.addItem(str(row_data[0]))
             self.Cmb_Fasilitas2.addItem(str(row_data[0]))
             self.Cmb_Fasilitas3.addItem(str(row_data[0]))
-            # for column_number, data in enumerate(row_data):
-            #     if (column_number==1):
-                    # self.Cmb_Fasilitas1.setCurrentText(str(data))
-                # elif (column_number==2):
-                #     self.Cmb_Fasilitas2.setCurrentText(str(data))
-                # elif (column_number==3):
-                #     self.Cmb_Fasilitas3.setCurrentText(str(data))
 
 def DisplayFasilitas1(self):
     id_facility = self.Cmb_Fasilitas1.currentText()
@@ -230,6 +217,13 @@ def DisplayFasilitas3(self):
         self.Lbl_Nama3.setText("")
         self.Lbl_Operation3.setText("")
 
+def fasilitas(self):
+    self.FrmFasilitas = QtWidgets.QMainWindow()
+    self.ui_fasilitas = Ui_FrmFasilitas()
+    self.ui_fasilitas.setupUi(self.FrmFasilitas)
+    self.ui_fasilitas.signals()
+    self.FrmFasilitas.show()
+
 
 Ui_FrmAccessCard.signals=signals
 Ui_FrmAccessCard.pesan=pesan
@@ -241,6 +235,7 @@ Ui_FrmAccessCard.AddIdFasilitas = AddIdFasilitas
 Ui_FrmAccessCard.DisplayFasilitas1 = DisplayFasilitas1
 Ui_FrmAccessCard.DisplayFasilitas2 = DisplayFasilitas2
 Ui_FrmAccessCard.DisplayFasilitas3 = DisplayFasilitas3
+Ui_FrmAccessCard.fasilitas = fasilitas
 
 
 if __name__ == "__main__":
