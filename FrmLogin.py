@@ -1,4 +1,5 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtWidgets import * 
 
 
 class Ui_FrmLoginMainWindow(object):
@@ -28,6 +29,7 @@ class Ui_FrmLoginMainWindow(object):
         self.Txt_password = QtWidgets.QLineEdit(self.formLayoutWidget)
         self.Txt_password.setInputMask("")
         self.Txt_password.setObjectName("Txt_password")
+        self.Txt_password.setEchoMode(QLineEdit.Password)
         self.formLayout.setWidget(1, QtWidgets.QFormLayout.FieldRole, self.Txt_password)
         self.label = QtWidgets.QLabel(self.centralwidget)
         self.label.setGeometry(QtCore.QRect(10, 10, 311, 16))
