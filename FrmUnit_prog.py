@@ -67,23 +67,24 @@ def DBConnection(self):
         sys.exit(1)
 
 def InsertData(self): 
-    no_unit = self.Txt_nounit.text()
-    tipe = self.Txt_tipe.text()
-    luas = int(self.Txt_luas.text())
-    id_owner = self.Combo_IdOwner.currentText()
-    id_aksescard1=self.Combo_aksescard1.currentText()
-    id_aksescard2=self.Combo_aksescard2.currentText()
-    id_aksescard3=self.Combo_aksescard3.currentText()
-    id_aksescard4=self.Combo_aksescard4.currentText()
-    id_aksescard5=self.Combo_aksescard5.currentText()
-    id_kendaraan1=self.Combo_kendaraan1.currentText()
-    id_kendaraan2=self.Combo_kendaraan2.currentText()
-    id_kendaraan3=self.Combo_kendaraan3.currentText()
-    id_kendaraan4=self.Combo_kendaraan4.currentText()
-    id_kendaraan5=self.Combo_kendaraan5.currentText()
-    iuranstatus = self.Combo_StatusIuran.currentText()
-    
     if (self.Lbl_user_role.text()=='Admin'):
+        no_unit = self.Txt_nounit.text()
+        tipe = self.Txt_tipe.text()
+        luas = int(self.Txt_luas.text())
+        id_owner = self.Combo_IdOwner.currentText()
+        id_aksescard1=self.Combo_aksescard1.currentText()
+        id_aksescard2=self.Combo_aksescard2.currentText()
+        id_aksescard3=self.Combo_aksescard3.currentText()
+        id_aksescard4=self.Combo_aksescard4.currentText()
+        id_aksescard5=self.Combo_aksescard5.currentText()
+        id_kendaraan1=self.Combo_kendaraan1.currentText()
+        id_kendaraan2=self.Combo_kendaraan2.currentText()
+        id_kendaraan3=self.Combo_kendaraan3.currentText()
+        id_kendaraan4=self.Combo_kendaraan4.currentText()
+        id_kendaraan5=self.Combo_kendaraan5.currentText()
+        iuranstatus = self.Combo_StatusIuran.currentText()
+        
+    
         try:
             con = mdb.connect('localhost','root','','pbe_final_project_db')
             
@@ -99,23 +100,24 @@ def InsertData(self):
         pesan(self,QMessageBox.Information,"Warning","you dont have authorisation, Please contact Admin")
 
 def UpdateData(self):
-    no_unit = self.Txt_nounit.text()
-    tipe = self.Txt_tipe.text()
-    luas = int(self.Txt_luas.text())
-    id_owner = self.Combo_IdOwner.currentText()
-    id_aksescard1=self.Combo_aksescard1.currentText()
-    id_aksescard2=self.Combo_aksescard2.currentText()
-    id_aksescard3=self.Combo_aksescard3.currentText()
-    id_aksescard4=self.Combo_aksescard4.currentText()
-    id_aksescard5=self.Combo_aksescard5.currentText()
-    id_kendaraan1=self.Combo_kendaraan1.currentText()
-    id_kendaraan2=self.Combo_kendaraan2.currentText()
-    id_kendaraan3=self.Combo_kendaraan3.currentText()
-    id_kendaraan4=self.Combo_kendaraan4.currentText()
-    id_kendaraan5=self.Combo_kendaraan5.currentText()
-    iuranstatus = self.Combo_StatusIuran.currentText()
-    
     if (self.Lbl_user_role.text()=='Admin'):
+        no_unit = self.Txt_nounit.text()
+        tipe = self.Txt_tipe.text()
+        luas = int(self.Txt_luas.text())
+        id_owner = self.Combo_IdOwner.currentText()
+        id_aksescard1=self.Combo_aksescard1.currentText()
+        id_aksescard2=self.Combo_aksescard2.currentText()
+        id_aksescard3=self.Combo_aksescard3.currentText()
+        id_aksescard4=self.Combo_aksescard4.currentText()
+        id_aksescard5=self.Combo_aksescard5.currentText()
+        id_kendaraan1=self.Combo_kendaraan1.currentText()
+        id_kendaraan2=self.Combo_kendaraan2.currentText()
+        id_kendaraan3=self.Combo_kendaraan3.currentText()
+        id_kendaraan4=self.Combo_kendaraan4.currentText()
+        id_kendaraan5=self.Combo_kendaraan5.currentText()
+        iuranstatus = self.Combo_StatusIuran.currentText()
+    
+    
         try:
             con = mdb.connect('localhost','root','','pbe_final_project_db')
         
@@ -132,9 +134,9 @@ def UpdateData(self):
         pesan(self,QMessageBox.Information,"Warning","you dont have authorisation, Please contact Admin")
 
 def DeleteData(self): 
-    no_unit = self.Txt_nounit.text()
-    
     if (self.Lbl_user_role.text()=='Admin'):
+        no_unit = self.Txt_nounit.text()
+    
         try:
             con = mdb.connect('localhost','root','','pbe_final_project_db')
             
@@ -598,9 +600,22 @@ def DisplayKendaraan1(self):
     if result == ():
         self.Lbl_Kend1_Jenis.setText("")
         self.Lbl_Kend1_Warna.setText("")
+        self.Lbl_Kend1_Parkir.setText("")
     else:
         self.Lbl_Kend1_Jenis.setText(result[0][1])
         self.Lbl_Kend1_Warna.setText(result[0][2])
+        
+        mobil=result[0][3]
+
+        cur1 = con.cursor()
+        cur1.execute("SELECT * FROM parkir WHERE IdParkir= %s", [mobil])
+        result1 = cur1.fetchall()
+        print(result1)
+        if result1 == ():
+            self.Lbl_Kend1_Parkir.setText("")
+        else:
+            parkir=str(result1[0][1]) + "-" + str(result1[0][2]) + "-" + str(result1[0][3])
+            self.Lbl_Kend1_Parkir.setText(parkir)
 
 def DisplayKendaraan2(self):
     con = mdb.connect('localhost','root','','pbe_final_project_db')
@@ -615,9 +630,22 @@ def DisplayKendaraan2(self):
     if result == ():
         self.Lbl_Kend2_Jenis.setText("")
         self.Lbl_Kend2_Warna.setText("")
+        self.Lbl_Kend2_Parkir.setText("")
     else:
         self.Lbl_Kend2_Jenis.setText(result[0][1])
         self.Lbl_Kend2_Warna.setText(result[0][2])
+        
+        mobil=result[0][3]
+
+        cur1 = con.cursor()
+        cur1.execute("SELECT * FROM parkir WHERE IdParkir= %s", [mobil])
+        result1 = cur1.fetchall()
+        print(result1)
+        if result1 == ():
+            self.Lbl_Kend2_Parkir.setText("")
+        else:
+            parkir=str(result1[0][1]) + "-" + str(result1[0][2]) + "-" + str(result1[0][3])
+            self.Lbl_Kend2_Parkir.setText(parkir)
 
 def DisplayKendaraan3(self):
     con = mdb.connect('localhost','root','','pbe_final_project_db')
@@ -632,9 +660,22 @@ def DisplayKendaraan3(self):
     if result == ():
         self.Lbl_Kend3_Jenis.setText("")
         self.Lbl_Kend3_Warna.setText("")
+        self.Lbl_Kend3_Parkir.setText("")
     else:
         self.Lbl_Kend3_Jenis.setText(result[0][1])
         self.Lbl_Kend3_Warna.setText(result[0][2])
+
+        mobil=result[0][3]
+
+        cur1 = con.cursor()
+        cur1.execute("SELECT * FROM parkir WHERE IdParkir= %s", [mobil])
+        result1 = cur1.fetchall()
+        print(result1)
+        if result1 == ():
+            self.Lbl_Kend3_Parkir.setText("")
+        else:
+            parkir=str(result1[0][1]) + "-" + str(result1[0][2]) + "-" + str(result1[0][3])
+            self.Lbl_Kend3_Parkir.setText(parkir)
 
 def DisplayKendaraan4(self):
     con = mdb.connect('localhost','root','','pbe_final_project_db')
@@ -649,9 +690,22 @@ def DisplayKendaraan4(self):
     if result == ():
         self.Lbl_Kend4_Jenis.setText("")
         self.Lbl_Kend4_Warna.setText("")
+        self.Lbl_Kend4_Parkir.setText("")
     else:
         self.Lbl_Kend4_Jenis.setText(result[0][1])
         self.Lbl_Kend4_Warna.setText(result[0][2])
+
+        mobil=result[0][3]
+
+        cur1 = con.cursor()
+        cur1.execute("SELECT * FROM parkir WHERE IdParkir= %s", [mobil])
+        result1 = cur1.fetchall()
+        print(result1)
+        if result1 == ():
+            self.Lbl_Kend4_Parkir.setText("")
+        else:
+            parkir=str(result1[0][1]) + "-" + str(result1[0][2]) + "-" + str(result1[0][3])
+            self.Lbl_Kend4_Parkir.setText(parkir)
 
 def DisplayKendaraan5(self):
     con = mdb.connect('localhost','root','','pbe_final_project_db')
@@ -666,9 +720,22 @@ def DisplayKendaraan5(self):
     if result == ():
         self.Lbl_Kend5_Jenis.setText("")
         self.Lbl_Kend5_Warna.setText("")
+        self.Lbl_Kend5_Parkir.setText("")
     else:
         self.Lbl_Kend5_Jenis.setText(result[0][1])
         self.Lbl_Kend5_Warna.setText(result[0][2])
+
+        mobil=result[0][3]
+
+        cur1 = con.cursor()
+        cur1.execute("SELECT * FROM parkir WHERE IdParkir= %s", [mobil])
+        result1 = cur1.fetchall()
+        print(result1)
+        if result1 == ():
+            self.Lbl_Kend5_Parkir.setText("")
+        else:
+            parkir=str(result1[0][1]) + "-" + str(result1[0][2]) + "-" + str(result1[0][3])
+            self.Lbl_Kend5_Parkir.setText(parkir)
 
 def DisplayOwner(self):
     con = mdb.connect('localhost','root','','pbe_final_project_db')

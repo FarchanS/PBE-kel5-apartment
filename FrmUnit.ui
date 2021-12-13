@@ -448,7 +448,7 @@
      <property name="geometry">
       <rect>
        <x>0</x>
-       <y>0</y>
+       <y>-140</y>
        <width>414</width>
        <height>655</height>
       </rect>
@@ -472,7 +472,7 @@
        <property name="geometry">
         <rect>
          <x>40</x>
-         <y>60</y>
+         <y>50</y>
          <width>101</width>
          <height>22</height>
         </rect>
@@ -485,7 +485,7 @@
        <property name="geometry">
         <rect>
          <x>140</x>
-         <y>60</y>
+         <y>50</y>
          <width>201</width>
          <height>22</height>
         </rect>
@@ -504,7 +504,7 @@
        <property name="geometry">
         <rect>
          <x>40</x>
-         <y>80</y>
+         <y>70</y>
          <width>60</width>
          <height>22</height>
         </rect>
@@ -517,7 +517,7 @@
        <property name="geometry">
         <rect>
          <x>140</x>
-         <y>80</y>
+         <y>70</y>
          <width>201</width>
          <height>22</height>
         </rect>
@@ -555,6 +555,38 @@
         </rect>
        </property>
       </widget>
+      <widget class="QLabel" name="roleLabel_51">
+       <property name="geometry">
+        <rect>
+         <x>40</x>
+         <y>90</y>
+         <width>91</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Tempat Parkir</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="Lbl_Kend1_Parkir">
+       <property name="geometry">
+        <rect>
+         <x>140</x>
+         <y>90</y>
+         <width>201</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="frameShape">
+        <enum>QFrame::StyledPanel</enum>
+       </property>
+       <property name="lineWidth">
+        <number>3</number>
+       </property>
+       <property name="text">
+        <string>Parkir</string>
+       </property>
+      </widget>
      </widget>
      <widget class="QGroupBox" name="groupBox_7">
       <property name="geometry">
@@ -575,7 +607,7 @@
        <property name="geometry">
         <rect>
          <x>40</x>
-         <y>60</y>
+         <y>50</y>
          <width>101</width>
          <height>22</height>
         </rect>
@@ -588,7 +620,7 @@
        <property name="geometry">
         <rect>
          <x>140</x>
-         <y>60</y>
+         <y>50</y>
          <width>201</width>
          <height>22</height>
         </rect>
@@ -607,7 +639,7 @@
        <property name="geometry">
         <rect>
          <x>40</x>
-         <y>80</y>
+         <y>70</y>
          <width>60</width>
          <height>22</height>
         </rect>
@@ -620,7 +652,7 @@
        <property name="geometry">
         <rect>
          <x>140</x>
-         <y>80</y>
+         <y>70</y>
          <width>201</width>
          <height>22</height>
         </rect>
@@ -658,6 +690,38 @@
         </rect>
        </property>
       </widget>
+      <widget class="QLabel" name="roleLabel_52">
+       <property name="geometry">
+        <rect>
+         <x>40</x>
+         <y>90</y>
+         <width>91</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Tempat Parkir</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="Lbl_Kend2_Parkir">
+       <property name="geometry">
+        <rect>
+         <x>140</x>
+         <y>90</y>
+         <width>201</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="frameShape">
+        <enum>QFrame::StyledPanel</enum>
+       </property>
+       <property name="lineWidth">
+        <number>3</number>
+       </property>
+       <property name="text">
+        <string>Parkir</string>
+       </property>
+      </widget>
      </widget>
      <widget class="QGroupBox" name="groupBox_10">
       <property name="geometry">
@@ -678,7 +742,7 @@
        <property name="geometry">
         <rect>
          <x>40</x>
-         <y>60</y>
+         <y>50</y>
          <width>91</width>
          <height>22</height>
         </rect>
@@ -691,7 +755,7 @@
        <property name="geometry">
         <rect>
          <x>140</x>
-         <y>60</y>
+         <y>50</y>
          <width>201</width>
          <height>22</height>
         </rect>
@@ -710,7 +774,7 @@
        <property name="geometry">
         <rect>
          <x>40</x>
-         <y>80</y>
+         <y>70</y>
          <width>60</width>
          <height>22</height>
         </rect>
@@ -723,7 +787,7 @@
        <property name="geometry">
         <rect>
          <x>140</x>
-         <y>80</y>
+         <y>70</y>
          <width>201</width>
          <height>22</height>
         </rect>
@@ -761,6 +825,38 @@
         </rect>
        </property>
       </widget>
+      <widget class="QLabel" name="roleLabel_57">
+       <property name="geometry">
+        <rect>
+         <x>40</x>
+         <y>90</y>
+         <width>91</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Tempat Parkir</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="Lbl_Kend5_Parkir">
+       <property name="geometry">
+        <rect>
+         <x>140</x>
+         <y>90</y>
+         <width>201</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="frameShape">
+        <enum>QFrame::StyledPanel</enum>
+       </property>
+       <property name="lineWidth">
+        <number>3</number>
+       </property>
+       <property name="text">
+        <string>Parkir</string>
+       </property>
+      </widget>
      </widget>
      <widget class="QGroupBox" name="groupBox_8">
       <property name="geometry">
@@ -781,7 +877,7 @@
        <property name="geometry">
         <rect>
          <x>40</x>
-         <y>60</y>
+         <y>50</y>
          <width>91</width>
          <height>22</height>
         </rect>
@@ -794,7 +890,7 @@
        <property name="geometry">
         <rect>
          <x>140</x>
-         <y>60</y>
+         <y>50</y>
          <width>201</width>
          <height>22</height>
         </rect>
@@ -813,7 +909,7 @@
        <property name="geometry">
         <rect>
          <x>40</x>
-         <y>80</y>
+         <y>70</y>
          <width>60</width>
          <height>22</height>
         </rect>
@@ -826,7 +922,7 @@
        <property name="geometry">
         <rect>
          <x>140</x>
-         <y>80</y>
+         <y>70</y>
          <width>201</width>
          <height>22</height>
         </rect>
@@ -864,6 +960,38 @@
         </rect>
        </property>
       </widget>
+      <widget class="QLabel" name="roleLabel_53">
+       <property name="geometry">
+        <rect>
+         <x>40</x>
+         <y>90</y>
+         <width>91</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Tempat Parkir</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="Lbl_Kend3_Parkir">
+       <property name="geometry">
+        <rect>
+         <x>140</x>
+         <y>90</y>
+         <width>201</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="frameShape">
+        <enum>QFrame::StyledPanel</enum>
+       </property>
+       <property name="lineWidth">
+        <number>3</number>
+       </property>
+       <property name="text">
+        <string>Parkir</string>
+       </property>
+      </widget>
      </widget>
      <widget class="QGroupBox" name="groupBox_9">
       <property name="geometry">
@@ -884,7 +1012,7 @@
        <property name="geometry">
         <rect>
          <x>40</x>
-         <y>60</y>
+         <y>50</y>
          <width>91</width>
          <height>22</height>
         </rect>
@@ -897,7 +1025,7 @@
        <property name="geometry">
         <rect>
          <x>140</x>
-         <y>60</y>
+         <y>50</y>
          <width>201</width>
          <height>22</height>
         </rect>
@@ -916,7 +1044,7 @@
        <property name="geometry">
         <rect>
          <x>40</x>
-         <y>80</y>
+         <y>70</y>
          <width>60</width>
          <height>22</height>
         </rect>
@@ -929,7 +1057,7 @@
        <property name="geometry">
         <rect>
          <x>140</x>
-         <y>80</y>
+         <y>70</y>
          <width>201</width>
          <height>22</height>
         </rect>
@@ -965,6 +1093,38 @@
          <width>101</width>
          <height>22</height>
         </rect>
+       </property>
+      </widget>
+      <widget class="QLabel" name="roleLabel_55">
+       <property name="geometry">
+        <rect>
+         <x>40</x>
+         <y>90</y>
+         <width>91</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Tempat Parkir</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="Lbl_Kend4_Parkir">
+       <property name="geometry">
+        <rect>
+         <x>140</x>
+         <y>90</y>
+         <width>201</width>
+         <height>22</height>
+        </rect>
+       </property>
+       <property name="frameShape">
+        <enum>QFrame::StyledPanel</enum>
+       </property>
+       <property name="lineWidth">
+        <number>3</number>
+       </property>
+       <property name="text">
+        <string>Parkir</string>
        </property>
       </widget>
      </widget>
