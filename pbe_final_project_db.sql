@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 14, 2021 at 01:33 AM
+-- Generation Time: Dec 14, 2021 at 03:48 AM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.12
 
@@ -43,7 +43,8 @@ INSERT INTO `accesscard` (`IdAccess`, `IdFasilitas1`, `IdFasilitas2`, `IdFasilit
 ('AC0001', 'G001', 'SP001', 'TN001'),
 ('AC0002', 'G001', '', ''),
 ('AC0003', 'TN001', 'SP001', ''),
-('AC0004', 'TN001', 'G001', '');
+('AC0004', 'TN001', 'G001', ''),
+('AC0005', 'GL001', 'G001', 'SP001');
 
 -- --------------------------------------------------------
 
@@ -66,6 +67,8 @@ CREATE TABLE `fasilitas` (
 INSERT INTO `fasilitas` (`IdFasilitas`, `Nama`, `JamBuka`, `JamTutup`, `Kapasitas`) VALUES
 ('', '', '', '', 0),
 ('G001', 'Gym', '08:30', '17:30', 0),
+('GL001', 'Golf1', '08:00', '18:00', 20),
+('GL002', 'Golf South area', '08:00', '18:00', 20),
 ('P001', 'Parkir Mobil', '00:00', '23:59', 500),
 ('P002', 'Parkir Motor', '00:00', '23:59', 250),
 ('SP001', 'Swimming Pool', '10:00', '18:00', 20),
