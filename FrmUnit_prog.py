@@ -9,6 +9,8 @@ from FrmFasilitas import *
 from FrmFasilitas_prog import *
 from FrmDataKen import *
 from FrmDataKen_prog import *
+from FrmOwner import *
+from FrmOwner_prog import *
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import * 
 import MySQLdb as mdb
@@ -27,6 +29,7 @@ def signals(self):
     self.PB_AccessCard.clicked.connect(self.AccessCard)
     self.Txt_nounit.textChanged.connect(self.select_data)
     self.PB_Vehicle.clicked.connect(self.kendaraan)
+    self.PB_Owner.clicked.connect(self.Owner)
     self.PB_Owner_Refresh.clicked.connect(self.AddIdOwner)
     self.PB_Vehicle_Refresh.clicked.connect(self.AddIdKendaraan)
     self.PB_AccessCard_Refresh.clicked.connect(self.AddIdAccessCard)
@@ -233,6 +236,16 @@ def kendaraan(self):
     else:
         pesan(self,QMessageBox.Information,"Warning","you dont have authorisation, Please contact Admin")
 
+def Owner(self):
+    if (self.Lbl_user_role.text()=='Admin'):
+        self.FrmOwner = QtWidgets.QMainWindow()
+        self.ui_owner = Ui_FrmOwner()
+        self.ui_owner.setupUi(self.FrmOwner)
+        self.ui_owner.signals()
+        self.FrmOwner.show()
+    else:
+        pesan(self,QMessageBox.Information,"Warning","you dont have authorisation, Please contact Admin")
+
 def AddIdAccessCard(self):
     
     cmb1=self.Combo_aksescard1.currentText()
@@ -252,11 +265,11 @@ def AddIdAccessCard(self):
     self.Combo_aksescard3.clear()
     self.Combo_aksescard4.clear()
     self.Combo_aksescard5.clear()
-    self.Combo_aksescard1.addItem("")
-    self.Combo_aksescard2.addItem("")
-    self.Combo_aksescard3.addItem("")
-    self.Combo_aksescard4.addItem("")
-    self.Combo_aksescard5.addItem("")
+    # self.Combo_aksescard1.addItem("")
+    # self.Combo_aksescard2.addItem("")
+    # self.Combo_aksescard3.addItem("")
+    # self.Combo_aksescard4.addItem("")
+    # self.Combo_aksescard5.addItem("")
     
     if result == ():
         ClearDataAccessCard(self)
@@ -294,11 +307,11 @@ def AddIdKendaraan(self):
     self.Combo_kendaraan3.clear()
     self.Combo_kendaraan4.clear()
     self.Combo_kendaraan5.clear()
-    self.Combo_kendaraan1.addItem("")
-    self.Combo_kendaraan2.addItem("")
-    self.Combo_kendaraan3.addItem("")
-    self.Combo_kendaraan4.addItem("")
-    self.Combo_kendaraan5.addItem("")
+    # self.Combo_kendaraan1.addItem("")
+    # self.Combo_kendaraan2.addItem("")
+    # self.Combo_kendaraan3.addItem("")
+    # self.Combo_kendaraan4.addItem("")
+    # self.Combo_kendaraan5.addItem("")
     
     if result == ():
         ClearDataKendaraan(self)
@@ -326,7 +339,7 @@ def AddIdOwner(self):
 
     result = cur.fetchall()
     self.Combo_IdOwner.clear()
-    self.Combo_IdOwner.addItem("")
+    # self.Combo_IdOwner.addItem("")
     
     if result == ():
         self.Combo_IdOwner.setCurrentText("")
@@ -606,16 +619,19 @@ def DisplayKendaraan1(self):
         self.Lbl_Kend1_Warna.setText(result[0][2])
         
         mobil=result[0][3]
-
-        cur1 = con.cursor()
-        cur1.execute("SELECT * FROM parkir WHERE IdParkir= %s", [mobil])
-        result1 = cur1.fetchall()
-        print(result1)
-        if result1 == ():
+        # print(mobil)
+        if (mobil==""):
             self.Lbl_Kend1_Parkir.setText("")
         else:
-            parkir=str(result1[0][1]) + "-" + str(result1[0][2]) + "-" + str(result1[0][3])
-            self.Lbl_Kend1_Parkir.setText(parkir)
+            cur1 = con.cursor()
+            cur1.execute("SELECT * FROM parkir WHERE IdParkir= %s", [mobil])
+            result1 = cur1.fetchall()
+            # print(result1)
+            if result1 == ():
+                self.Lbl_Kend1_Parkir.setText("")
+            else:
+                parkir=str(result1[0][1]) + "-" + str(result1[0][2]) + "-" + str(result1[0][3])
+                self.Lbl_Kend1_Parkir.setText(parkir)
 
 def DisplayKendaraan2(self):
     con = mdb.connect('localhost','root','','pbe_final_project_db')
@@ -636,16 +652,19 @@ def DisplayKendaraan2(self):
         self.Lbl_Kend2_Warna.setText(result[0][2])
         
         mobil=result[0][3]
-
-        cur1 = con.cursor()
-        cur1.execute("SELECT * FROM parkir WHERE IdParkir= %s", [mobil])
-        result1 = cur1.fetchall()
-        print(result1)
-        if result1 == ():
+        
+        if (mobil==""):
             self.Lbl_Kend2_Parkir.setText("")
         else:
-            parkir=str(result1[0][1]) + "-" + str(result1[0][2]) + "-" + str(result1[0][3])
-            self.Lbl_Kend2_Parkir.setText(parkir)
+            cur1 = con.cursor()
+            cur1.execute("SELECT * FROM parkir WHERE IdParkir= %s", [mobil])
+            result1 = cur1.fetchall()
+            # print(result1)
+            if result1 == ():
+                self.Lbl_Kend2_Parkir.setText("")
+            else:
+                parkir=str(result1[0][1]) + "-" + str(result1[0][2]) + "-" + str(result1[0][3])
+                self.Lbl_Kend2_Parkir.setText(parkir)
 
 def DisplayKendaraan3(self):
     con = mdb.connect('localhost','root','','pbe_final_project_db')
@@ -667,15 +686,18 @@ def DisplayKendaraan3(self):
 
         mobil=result[0][3]
 
-        cur1 = con.cursor()
-        cur1.execute("SELECT * FROM parkir WHERE IdParkir= %s", [mobil])
-        result1 = cur1.fetchall()
-        print(result1)
-        if result1 == ():
+        if (mobil==""):
             self.Lbl_Kend3_Parkir.setText("")
         else:
-            parkir=str(result1[0][1]) + "-" + str(result1[0][2]) + "-" + str(result1[0][3])
-            self.Lbl_Kend3_Parkir.setText(parkir)
+            cur1 = con.cursor()
+            cur1.execute("SELECT * FROM parkir WHERE IdParkir= %s", [mobil])
+            result1 = cur1.fetchall()
+            # print(result1)
+            if result1 == ():
+                self.Lbl_Kend3_Parkir.setText("")
+            else:
+                parkir=str(result1[0][1]) + "-" + str(result1[0][2]) + "-" + str(result1[0][3])
+                self.Lbl_Kend3_Parkir.setText(parkir)
 
 def DisplayKendaraan4(self):
     con = mdb.connect('localhost','root','','pbe_final_project_db')
@@ -697,15 +719,18 @@ def DisplayKendaraan4(self):
 
         mobil=result[0][3]
 
-        cur1 = con.cursor()
-        cur1.execute("SELECT * FROM parkir WHERE IdParkir= %s", [mobil])
-        result1 = cur1.fetchall()
-        print(result1)
-        if result1 == ():
+        if (mobil==""):
             self.Lbl_Kend4_Parkir.setText("")
         else:
-            parkir=str(result1[0][1]) + "-" + str(result1[0][2]) + "-" + str(result1[0][3])
-            self.Lbl_Kend4_Parkir.setText(parkir)
+            cur1 = con.cursor()
+            cur1.execute("SELECT * FROM parkir WHERE IdParkir= %s", [mobil])
+            result1 = cur1.fetchall()
+            # print(result1)
+            if result1 == ():
+                self.Lbl_Kend4_Parkir.setText("")
+            else:
+                parkir=str(result1[0][1]) + "-" + str(result1[0][2]) + "-" + str(result1[0][3])
+                self.Lbl_Kend4_Parkir.setText(parkir)
 
 def DisplayKendaraan5(self):
     con = mdb.connect('localhost','root','','pbe_final_project_db')
@@ -726,16 +751,18 @@ def DisplayKendaraan5(self):
         self.Lbl_Kend5_Warna.setText(result[0][2])
 
         mobil=result[0][3]
-
-        cur1 = con.cursor()
-        cur1.execute("SELECT * FROM parkir WHERE IdParkir= %s", [mobil])
-        result1 = cur1.fetchall()
-        print(result1)
-        if result1 == ():
+        if (mobil==""):
             self.Lbl_Kend5_Parkir.setText("")
         else:
-            parkir=str(result1[0][1]) + "-" + str(result1[0][2]) + "-" + str(result1[0][3])
-            self.Lbl_Kend5_Parkir.setText(parkir)
+            cur1 = con.cursor()
+            cur1.execute("SELECT * FROM parkir WHERE IdParkir= %s", [mobil])
+            result1 = cur1.fetchall()
+            # print(result1)
+            if result1 == ():
+                self.Lbl_Kend5_Parkir.setText("")
+            else:
+                parkir=str(result1[0][1]) + "-" + str(result1[0][2]) + "-" + str(result1[0][3])
+                self.Lbl_Kend5_Parkir.setText(parkir)
 
 def DisplayOwner(self):
     con = mdb.connect('localhost','root','','pbe_final_project_db')
@@ -767,6 +794,7 @@ Ui_FrmUnit.login = login
 Ui_FrmUnit.logout = logout
 Ui_FrmUnit.AccessCard = AccessCard
 Ui_FrmUnit.kendaraan = kendaraan
+Ui_FrmUnit.Owner = Owner
 Ui_FrmUnit.AddIdAccessCard = AddIdAccessCard
 Ui_FrmUnit.AddIdKendaraan = AddIdKendaraan
 Ui_FrmUnit.AddIdOwner = AddIdOwner
